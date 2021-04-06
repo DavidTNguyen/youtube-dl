@@ -2,7 +2,7 @@
 
 
 youtube-dl - download videos from youtube.com or other video platforms
-
+- [SAMPLE COMMANDS](#sample-commands)
 - [INSTALLATION](#installation)
 - [DESCRIPTION](#description)
 - [OPTIONS](#options)
@@ -15,6 +15,14 @@ youtube-dl - download videos from youtube.com or other video platforms
 - [EMBEDDING YOUTUBE-DL](#embedding-youtube-dl)
 - [BUGS](#bugs)
 - [COPYRIGHT](#copyright)
+
+# Sample-Commands
+
+To copy a video into your ~/Movies folder
+
+```sh
+youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' -o "~/movies/%(title)s-%(id)s.%(ext)s" 'https://www.youtube.com/watch?v=0BV9nIWL8lc'
+```
 
 # INSTALLATION
 
