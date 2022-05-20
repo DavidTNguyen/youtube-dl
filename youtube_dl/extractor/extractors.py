@@ -51,6 +51,10 @@ from .anvato import AnvatoIE
 from .aol import AolIE
 from .allocine import AllocineIE
 from .aliexpress import AliExpressLiveIE
+from .alsace20tv import (
+    Alsace20TVIE,
+    Alsace20TVEmbedIE,
+)
 from .apa import APAIE
 from .aparat import AparatIE
 from .appleconnect import AppleConnectIE
@@ -71,6 +75,7 @@ from .arte import (
     ArteTVIE,
     ArteTVEmbedIE,
     ArteTVPlaylistIE,
+    ArteTVCategoryIE,
 )
 from .arnes import ArnesIE
 from .asiancrush import (
@@ -114,6 +119,7 @@ from .bfmtv import (
 )
 from .bibeltv import BibelTVIE
 from .bigflix import BigflixIE
+from .bigo import BigoIE
 from .bild import BildIE
 from .bilibili import (
     BiliBiliIE,
@@ -132,7 +138,6 @@ from .bleacherreport import (
     BleacherReportIE,
     BleacherReportCMSIE,
 )
-from .blinkx import BlinkxIE
 from .bloomberg import BloombergIE
 from .bokecc import BokeCCIE
 from .bongacams import BongaCamsIE
@@ -191,7 +196,11 @@ from .cbsnews import (
     CBSNewsIE,
     CBSNewsLiveVideoIE,
 )
-from .cbssports import CBSSportsIE
+from .cbssports import (
+    CBSSportsEmbedIE,
+    CBSSportsIE,
+    TwentyFourSevenSportsIE,
+)
 from .ccc import (
     CCCIE,
     CCCPlaylistIE,
@@ -250,6 +259,10 @@ from .commonprotocols import (
 from .condenast import CondeNastIE
 from .contv import CONtvIE
 from .corus import CorusIE
+from .cpac import (
+    CPACIE,
+    CPACPlaylistIE,
+)
 from .cracked import CrackedIE
 from .crackle import CrackleIE
 from .crooksandliars import CrooksAndLiarsIE
@@ -544,6 +557,7 @@ from .kinja import KinjaEmbedIE
 from .kinopoisk import KinoPoiskIE
 from .konserthusetplay import KonserthusetPlayIE
 from .krasview import KrasViewIE
+from .kth import KTHIE
 from .ku6 import Ku6IE
 from .kusi import KUSIIE
 from .kuwo import (
@@ -607,10 +621,6 @@ from .linkedin import (
 from .linuxacademy import LinuxAcademyIE
 from .litv import LiTVIE
 from .livejournal import LiveJournalIE
-from .liveleak import (
-    LiveLeakIE,
-    LiveLeakEmbedIE,
-)
 from .livestream import (
     LivestreamIE,
     LivestreamOriginalIE,
@@ -636,6 +646,7 @@ from .mangomolo import (
     MangomoloLiveIE,
 )
 from .manyvids import ManyVidsIE
+from .maoritv import MaoriTVIE
 from .markiza import (
     MarkizaIE,
     MarkizaPageIE,
@@ -789,7 +800,14 @@ from .nick import (
     NickNightIE,
     NickRuIE,
 )
-from .niconico import NiconicoIE, NiconicoPlaylistIE
+from .niconico import (
+    NiconicoIE,
+    NiconicoPlaylistIE,
+    NiconicoUserIE,
+    NicovideoSearchIE,
+    NicovideoSearchDateIE,
+    NicovideoSearchURLIE,
+)
 from .ninecninemedia import NineCNineMediaIE
 from .ninegag import NineGagIE
 from .ninenow import NineNowIE
@@ -921,6 +939,7 @@ from .platzi import (
 from .playfm import PlayFMIE
 from .playplustv import PlayPlusTVIE
 from .plays import PlaysTVIE
+from .playstuff import PlayStuffIE
 from .playtvak import PlaytvakIE
 from .playvid import PlayvidIE
 from .playwire import PlaywireIE
@@ -1605,7 +1624,7 @@ from .youtube import (
     YoutubeRecommendedIE,
     YoutubeSearchDateIE,
     YoutubeSearchIE,
-    #YoutubeSearchURLIE,
+    YoutubeSearchURLIE,
     YoutubeSubscriptionsIE,
     YoutubeTruncatedIDIE,
     YoutubeTruncatedURLIE,

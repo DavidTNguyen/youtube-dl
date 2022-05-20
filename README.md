@@ -295,7 +295,7 @@ Alternatively, refer to the [developer instructions](#developer-instructions) fo
     --no-cache-dir                       Disable filesystem caching
     --rm-cache-dir                       Delete all filesystem cache files
 
-## Thumbnail images:
+## Thumbnail Options:
     --write-thumbnail                    Write thumbnail image to disk
     --write-all-thumbnails               Write all thumbnail image formats to
                                          disk
@@ -901,7 +901,7 @@ Since June 2012 ([#342](https://github.com/ytdl-org/youtube-dl/issues/342)) yout
 
 ### The exe throws an error due to missing `MSVCR100.dll`
 
-To run the exe you need to install first the [Microsoft Visual C++ 2010 Redistributable Package (x86)](https://www.microsoft.com/en-US/download/details.aspx?id=5555).
+To run the exe you need to install first the [Microsoft Visual C++ 2010 Service Pack 1 Redistributable Package (x86)](https://download.microsoft.com/download/1/6/5/165255E7-1014-4D0A-B094-B6A430A6BFFC/vcredist_x86.exe).
 
 ### On Windows, how should I set up ffmpeg and youtube-dl? Where should I put the exe files?
 
@@ -1077,9 +1077,11 @@ After you have ensured this site is distributing its content legally, you can fo
             }
     ```
 5. Add an import in [`youtube_dl/extractor/extractors.py`](https://github.com/ytdl-org/youtube-dl/blob/master/youtube_dl/extractor/extractors.py).
-6. Run `python test/test_download.py TestDownload.test_YourExtractor`. This *should fail* at first, but you can continually re-run it until you're done. If you decide to add more than one test, then rename ``_TEST`` to ``_TESTS`` and make it into a list of dictionaries. The tests will then be named `TestDownload.test_YourExtractor`, `TestDownload.test_YourExtractor_1`, `TestDownload.test_YourExtractor_2`, etc. Note that tests with `only_matching` key in test's dict are not counted in.
-7. Have a look at [`youtube_dl/extractor/common.py`](https://github.com/ytdl-org/youtube-dl/blob/master/youtube_dl/extractor/common.py) for possible helper methods and a [detailed description of what your extractor should and may return](https://github.com/ytdl-org/youtube-dl/blob/7f41a598b3fba1bcab2817de64a08941200aa3c8/youtube_dl/extractor/common.py#L94-L303). Add tests and code for as many as you want.
-8. Make sure your code follows [youtube-dl coding conventions](#youtube-dl-coding-conventions) and check the code with [flake8](https://flake8.pycqa.org/en/latest/index.html#quickstart):
+6. Run `python test/test_download.py TestDownload.test_YourExtractor`. This *should fail* at first, but you can continually re-run it until you're done. If you decide to add more than one test (actually, test case) then rename ``_TEST`` to ``_TESTS`` and make it into a list of dictionaries. The tests will then be named `TestDownload.test_YourExtractor`, `TestDownload.test_YourExtractor_1`, `TestDownload.test_YourExtractor_2`, etc. Note:
+    * the test names use the extractor class name **without the trailing `IE`**
+    * tests with `only_matching` key in test's dict are not counted.
+8. Have a look at [`youtube_dl/extractor/common.py`](https://github.com/ytdl-org/youtube-dl/blob/master/youtube_dl/extractor/common.py) for possible helper methods and a [detailed description of what your extractor should and may return](https://github.com/ytdl-org/youtube-dl/blob/7f41a598b3fba1bcab2817de64a08941200aa3c8/youtube_dl/extractor/common.py#L94-L303). Add tests and code for as many as you want.
+9. Make sure your code follows [youtube-dl coding conventions](#youtube-dl-coding-conventions) and check the code with [flake8](https://flake8.pycqa.org/en/latest/index.html#quickstart):
 
         $ flake8 youtube_dl/extractor/yourextractor.py
 

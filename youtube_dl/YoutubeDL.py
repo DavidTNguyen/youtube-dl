@@ -773,11 +773,20 @@ class YoutubeDL(object):
 
     def extract_info(self, url, download=True, ie_key=None, extra_info={},
                      process=True, force_generic_extractor=False):
-        '''
-        Returns a list with a dictionary for each video we find.
-        If 'download', also downloads the videos.
-        extra_info is a dict containing the extra values to add to each result
-        '''
+        """
+        Return a list with a dictionary for each video extracted.
+
+        Arguments:
+        url -- URL to extract
+
+        Keyword arguments:
+        download -- whether to download videos during extraction
+        ie_key -- extractor key hint
+        extra_info -- dictionary containing the extra values to add to each result
+        process -- whether to resolve all unresolved references (URLs, playlist items),
+            must be True for download to work.
+        force_generic_extractor -- force using the generic extractor
+        """
 
         if not ie_key and force_generic_extractor:
             ie_key = 'Generic'
@@ -1520,7 +1529,7 @@ class YoutubeDL(object):
                 # see http://bugs.python.org/issue1646728)
                 try:
                     upload_date = datetime.datetime.utcfromtimestamp(info_dict[ts_key])
-                    info_dict[date_key] = upload_date.strftime('%Y%m%d')
+                    info_dict[date_key] = compat_str(upload_date.strftime('%Y%m%d'))
                 except (ValueError, OverflowError, OSError):
                     pass
 
@@ -1897,8 +1906,17 @@ class YoutubeDL(object):
 
         if not self.params.get('skip_download', False):
             try:
+                def checked_get_suitable_downloader(info_dict, params):
+                    ed_args = params.get('external_downloader_args')
+                    dler = get_suitable_downloader(info_dict, params)
+                    if ed_args and not params.get('external_downloader_args'):
+                        # external_downloader_args was cleared because external_downloader was rejected
+                        self.report_warning('Requested external downloader cannot be used: '
+                                            'ignoring --external-downloader-args.')
+                    return dler
+
                 def dl(name, info):
-                    fd = get_suitable_downloader(info, self.params)(self, self.params)
+                    fd = checked_get_suitable_downloader(info, self.params)(self, self.params)
                     for ph in self._progress_hooks:
                         fd.add_progress_hook(ph)
                     if self.params.get('verbose'):
